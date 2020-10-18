@@ -1,0 +1,31 @@
+{
+  "name": "MiniProjetoRedis",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/daniel-dantas/MiniProjetoRedis",
+  "author": "daniel-dantas <daniel.dantas.ip19@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./dist/server.js",
+    "dev": "nodemon ./src/server.ts",
+    "build": "tsc -p ."
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.8",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pg": "^8.4.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.8",
+    "@types/node": "^14.11.10",
+    "@types/pg": "^7.14.5",
+    "@types/sequelize": "^4.28.9",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.5",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
+  }
+}
