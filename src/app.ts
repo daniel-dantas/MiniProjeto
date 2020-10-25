@@ -1,5 +1,6 @@
 import express, { json } from 'express';
 import Cors from 'cors';
+import Routes from './routes';
 
 interface Props {
     PORT: number | string,
@@ -18,6 +19,7 @@ class App {
     }
 
     private routes(){
+        this.express.use('/api/v1', Routes);
         this.express.get('/api/v1', (req, res) => {
             return res.status(200).json({
                 author: 'Daniel Dantas',
