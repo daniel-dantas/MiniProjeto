@@ -1,6 +1,7 @@
 import express, { json } from 'express';
 import Cors from 'cors';
 import Routes from './routes';
+import MongoDB from './databases/mongo';
 
 interface Props {
     PORT: number | string,
@@ -16,6 +17,12 @@ class App {
         this.express.use(Cors());
         this.routes();
         this.listen(PORT);
+
+        MongoDB.connect().then(() => {
+            console.log(`Mongo running perfectly`);
+        }).catch(err => {
+            console.log(`Mongo connection error: ${err}`);
+        });
     }
 
     private routes(){
