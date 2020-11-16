@@ -6,7 +6,7 @@ export default class UserController {
         const body = req.body;
 
         await UserModel.create({...body}).then(resp => {
-            return res.status(200).json({...resp});
+            return res.status(200).json(resp);
         }).catch(err => {
             console.log(err);
             return res.status(400).json({
