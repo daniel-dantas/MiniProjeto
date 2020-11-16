@@ -1,9 +1,10 @@
 import { Schema, model, Types, Document } from 'mongoose';
 
-interface IPurchase {
+interface IPurchase extends Document {
     userEmail: string,
     totalPaid: number,
     products?: {
+        _id: string,
         description: string,
         price: number,
         qntd: number

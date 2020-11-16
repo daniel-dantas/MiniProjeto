@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { IpcSocketConnectOpts } from 'net';
 import RedisClient from '../databases/redis';
 import PurchaseModel, { IPurchase } from '../models/purchase';
 
@@ -19,7 +20,7 @@ class PurchaseController {
             }
 
             if( value ){
-                let purchase: IPurchase = { 
+                let purchase: IPurchase | any = { 
                     userEmail: useremail,
                     totalPaid: 0,
                 };
@@ -55,6 +56,27 @@ class PurchaseController {
 
         return res.status(200).json(purchases);
     }
+
+    public static async search(req: Request, res: Response) {
+
+        const productDescription = req.query.productDescription as string;
+        const response: any[] = [];
+
+        let purchases = await PurchaseModel.find() as IPurchase[];
+
+        purchases.map(pur => {
+            pur.products?.map(prod => {
+                (prod.description.indexOf(productDescription) > -1) ? response.push({
+                    idPurchase: pur._id,
+                    user: pur.userEmail,
+                    product: prod
+                }) : '';
+            });
+        });
+
+        return res.status(200).json(response);
+    }
+
     
 }
 
